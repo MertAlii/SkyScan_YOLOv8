@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOLO Nesne Tespiti</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="background-effects">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Sky <span class="highlight">Scan</span></h1>
+            <p>Yapay Zeka Destekli Anlık Nesne Tespiti Sistemi</p>
+        </header>
+
+        <div class="settings-bar glass-panel">
+            <label for="conf-slider">Güven Skoru (Confidence): <span id="conf-val">25%</span></label>
+            <input type="range" id="conf-slider" min="1" max="100" value="25" class="slider" />
+        </div>
+
+        <main class="glass-panel">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="examples"><i class="fa-solid fa-images"></i> Örnekler</button>
+                <button class="tab-btn" data-tab="upload"><i class="fa-solid fa-cloud-arrow-up"></i> Dosya
+                    Yükle</button>
+                <button class="tab-btn" data-tab="camera"><i class="fa-solid fa-camera"></i> Kamera</button>
+            </div>
+
+            <div class="tab-content">
+                <!-- Örnekler Modu -->
+                <div id="examples" class="tab-pane active">
+                    <div class="section-title">
+                        <h2>Örnek Resimler</h2>
+                        <button id="refresh-examples" class="btn-icon" title="Yenile"><i
+                                class="fa-solid fa-rotate-right"></i></button>
+                    </div>
+                    <div id="example-gallery" class="gallery">
+                        <div class="loader">Yükleniyor...</div>
+                    </div>
+                </div>
+
+                <!-- Dosya Yükleme Modu -->
+                <div id="upload" class="tab-pane">
+                    <div class="upload-area" id="drop-zone">
+                        <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                        <h3>Resmini Buraya Sürükle veya Seç</h3>
+                        <p>PNG, JPG desteklenir</p>
+                        <input type="file" id="file-input" accept="image/png, image/jpeg" hidden>
+                        <button class="btn primary-btn"
+                            onclick="document.getElementById('file-input').click()">Bilgisayardan Seç</button>
+                    </div>
+                </div>
+
+                <!-- Kamera Modu -->
+                <div id="camera" class="tab-pane">
+                    <div class="camera-container">
+                        <video id="webcam" autoplay playsinline></video>
+                        <canvas id="canvas" hidden></canvas>
+                        <button id="capture-btn" class="btn primary-btn"><i class="fa-solid fa-camera"></i> Çek & Analiz
+                            Et</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="result-area" id="result-area" style="display: none;">
+                <div class="result-header">
+                    <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Analiz Sonucu</h2>
+                    <div>
+                        <button id="download-btn" class="btn primary-btn"
+                            style="margin-right: 10px; padding: 0.5rem 1rem; font-size: 0.9rem;"><i
+                                class="fa-solid fa-download"></i> İndir</button>
+                        <button id="close-result" class="btn-icon"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                </div>
+
+                <div id="detection-tags" class="detection-tags"></div>
+
+                <div class="result-image-wrapper">
+                    <img id="result-image" src="" alt="Sonuç">
+                    <div id="analyze-loader" class="analyze-loader" style="display: none;">
+                        <div class="spinner"></div>
+                        <span>Yapay Zeka İnceliyor...</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/main.js"></script>
+</body>
+
+</html>
