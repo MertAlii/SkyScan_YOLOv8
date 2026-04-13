@@ -77,7 +77,7 @@
 
 ```bash
 # 1. Depoyu klonlayın
-git clone https://github.com/MertAlii/SkyScan.git
+git clone https://github.com/MertAlii/SkyScan_YOLOv8.git
 cd SkyScan
 
 # 2. Bağımlılıkları yükleyin
